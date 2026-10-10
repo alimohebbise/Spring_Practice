@@ -1,7 +1,10 @@
 package com.example.demo.Controller;
 
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
@@ -48,6 +51,27 @@ public class UserController {
                 + ", Age: " + form.getAge();
     }
 
+    @GetMapping("/hello")
+    @ResponseBody
+    public String hello() {
+        return "Hello Ali!";
+    }
+
+    @GetMapping("/helloo") // ResponseBody به طور پیش فرض
+    public String helloo() {  // حتی اگر @ResponseBody را حذف کنیم، نتیجه را به ما برمیگردونه
+        return "Hello Ali!";
+    }
+
+    @GetMapping("/Jason")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String getUsersStatus() {
+        return "User Status Created Successfully";
+    }
+
+    @PostMapping("/usersa")
+    public String createUsera(@Valid @RequestBody Usera userb) {
+        return "User created: " + userb.getNameaa();
+    }
 
 
 }
